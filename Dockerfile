@@ -11,7 +11,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 #install lavarel
 # RUN composer create-project --prefer-dist laravel/laravel test_project && chmod -R 777 *
-RUN composer global require "laravel/installer" && chmod -R 777 .
+RUN composer global require "laravel/installer" 
+#&& chmod -R 777 .
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 ADD ./html.conf /etc/apache2/sites-available/
