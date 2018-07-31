@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+@section('head')
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,3 +11,4 @@
     <link rel="shortcut icon" href="http://chocolat.nois3.net/app/themes/chocolat/img/favicon.jpg">
 </head>
 <body>
+@endsection
