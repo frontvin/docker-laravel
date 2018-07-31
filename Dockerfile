@@ -17,6 +17,9 @@ ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 ADD ./html.conf /etc/apache2/sites-available/
 
+RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf
+
 RUN a2dissite 000-default.conf
 RUN a2ensite html.conf
+RUN a2enmod rewrite
 RUN service apache2 restart
