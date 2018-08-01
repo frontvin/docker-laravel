@@ -1,6 +1,6 @@
 FROM alexcheng/apache2-php7
 
-#run apk to install the dependencies and extensions required by Laravel
+#run instalation the dependencies and extensions required by Laravel
 
 RUN apt-get update -y && apt-get install -y libmcrypt-dev openssl php7.0-zip zlib1g-dev
 RUN docker-php-ext-install pdo mcrypt mbstring zip
@@ -17,7 +17,7 @@ ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 ADD ./html.conf /etc/apache2/sites-available/
 
-RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf
+RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf?
 
 RUN a2dissite 000-default.conf
 RUN a2ensite html.conf
