@@ -3,7 +3,7 @@ FROM alexcheng/apache2-php7
 #run instalation the dependencies and extensions required by Laravel
 
 RUN apt-get update -y && apt-get install -y libmcrypt-dev openssl php7.0-zip zlib1g-dev
-RUN docker-php-ext-install pdo mcrypt mbstring zip
+RUN docker-php-ext-install pdo pdo_mysql mcrypt mbstring zip
 
 #install composer
 

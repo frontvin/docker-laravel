@@ -7,10 +7,10 @@ services:
     volumes:
       - '.:/var/www'
     environment:
-      DB_HOST: mysql
-      DB_DATABASE: laravel_docker
-      DB_USERNAME: site
-      DB_PASSWORD: password
+      - DB_HOST=mysql
+      - DB_DATABASE=laravel_docker
+      - DB_USERNAME=site
+      - DB_PASSWORD=password
     depends_on:
       - database
   php-myadmin:
