@@ -173,4 +173,4 @@
     <!-- END FORM SECTION-->
 
 @include('footer')
-
+<?php phpinfo();?>

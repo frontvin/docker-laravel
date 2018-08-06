@@ -3,6 +3,36 @@ services:
   web:
     build: .
     ports:
-      - '8000:80'
+      - '8080:80'
     volumes:
       - '.:/var/www'
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - MYSQL_URL=db
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=password
+    depends_on:
+      - mysql
+  php-myadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '9000:80'
+    environment:
+      - MYSQL_USERNAME=root
+      - MYSQL_ROOT_PASSWORD=password
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+    depends_on:
+      - mysql
+  mysql:
+    image: 'mysql:5.7.22'
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - './data:/var/lib/mysql/'
+volumes:
+  data:
+    driver: local
