@@ -8,11 +8,12 @@ services:
       - '.:/var/www'
     environment:
       - DB_HOST=mysql
-      - DB_DATABASE=laravel_docker
-      - DB_USERNAME=site
-      - DB_PASSWORD=password
+      - DB_PORT=3306
+      - MYSQL_URL=db
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=password
     depends_on:
-      - database
+      - mysql
   php-myadmin:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -20,18 +21,18 @@ services:
     environment:
       - MYSQL_USERNAME=root
       - MYSQL_ROOT_PASSWORD=password
-      - PMA_HOST=database
+      - PMA_HOST=mysql
       - PMA_PORT=3306
     depends_on:
-      - database
-  database:
-    image: mysql:5.7.22
+      - mysql
+  mysql:
+    image: 'mysql:5.7.22'
     ports:
-      - '13306:3306'
+      - '3306:3306'
     environment:
-      - MYSQL_DATABASE=laravel_docker
-      - MYSQL_USER=site
-      - MYSQL_PASSWORD=password
       - MYSQL_ROOT_PASSWORD=password
     volumes:
-      - './data:/var/lib/mysql'
+      - './data:/var/lib/mysql/'
+volumes:
+  data:
+    driver: local

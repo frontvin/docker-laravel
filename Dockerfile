@@ -1,10 +1,12 @@
 FROM alexcheng/apache2-php7
 
 #run instalation the dependencies and extensions required by Laravel
-
-RUN apt-get update -y && apt-get install -y libmcrypt-dev openssl php7.0-zip zlib1g-dev
-RUN docker-php-ext-install pdo pdo_mysql mcrypt mbstring zip
-
+RUN apt-get update -y && apt-get install -y libmcrypt-dev openssl php7.0-zip zlib1g-dev \
+    mysql-client libmagickwand-dev --no-install-recommends \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && docker-php-ext-install mcrypt pdo_mysql
+RUN docker-php-ext-install pdo mcrypt mbstring zip
 #install composer
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
