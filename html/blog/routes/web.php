@@ -15,3 +15,10 @@ Route::get('/', function () {
     return view('index');
     
 });
+
+
+Route::get('/admin/{id}', function ($id) {
+    return 'asdfasdfasdfaf id is: '.$id;
+});
+
+Route::post('/saveorder', 'AdminController@save');
