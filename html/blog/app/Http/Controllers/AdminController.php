@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\User;
+
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Order;
+
 
 class AdminController extends Controller
 {
@@ -16,7 +19,9 @@ class AdminController extends Controller
      */
     public function show()
     {
-        return 'we will have all orders here';
+        $users = DB::table('orders')->get();
+
+        return view('admin', ['orders' => $users]);
     }
 
     public function save(Request $request)
